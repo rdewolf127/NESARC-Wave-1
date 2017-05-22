@@ -1,0 +1,1534 @@
+libname mydata "/courses/d1406ae5ba27fe300 " access=readonly;
+
+data new; set mydata.nesarc_pds;
+keep IDNUM S1Q9A S3CD3Q13B AGE opioidabuselife majordeplife;/*add majordeplife as moderator*/
+
+/*create did not work for pay industry category*/
+if S1Q9A = . then S1Q9A = 15;
+
+/*define opioid abusers based on those with at least 1 opioid abuse event*/
+if S3CD3Q13B NE . then opioidabuselife = 1;
+if S3CD3Q13B = . then opioidabuselife = 0;
+
+/*change industry numbers to characters*/
+S1Q9A = STRIP(PUT(S1Q9A, 8.));
+
+/*subset the data to only adults*/
+if AGE GE 18;
+run;
+
+/*sort by moderator*/
+proc sort; by majordeplife;
+
+/*run frequency tables on opioid episodes and industry*/
+proc freq; tables S1Q9A opioidabuselife majordeplife;
+run;
+
+/*run Chi Square test with moderator*/
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+by majordeplife;
+RUN;
+
+/*post hoc analysis*/
+DATA COMPARISON1; SET NEW;
+IF S1Q9A=1 OR S1Q9A=2;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON2; SET NEW;
+IF S1Q9A=1 OR S1Q9A=3;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON3; SET NEW;
+IF S1Q9A=1 OR S1Q9A=4;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON4; SET NEW;
+IF S1Q9A=1 OR S1Q9A=5;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON5; SET NEW;
+IF S1Q9A=1 OR S1Q9A=6;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON6; SET NEW;
+IF S1Q9A=1 OR S1Q9A=7;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON7; SET NEW;
+IF S1Q9A=1 OR S1Q9A=8;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON8; SET NEW;
+IF S1Q9A=1 OR S1Q9A=9;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON9; SET NEW;
+IF S1Q9A=1 OR S1Q9A=10;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON10; SET NEW;
+IF S1Q9A=1 OR S1Q9A=11;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON11; SET NEW;
+IF S1Q9A=1 OR S1Q9A=12;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON12; SET NEW;
+IF S1Q9A=1 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON13; SET NEW;
+IF S1Q9A=1 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON14; SET NEW;
+IF S1Q9A=1 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON15; SET NEW;
+IF S1Q9A=2 OR S1Q9A=3;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON16; SET NEW;
+IF S1Q9A=2 OR S1Q9A=4;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON17; SET NEW;
+IF S1Q9A=2 OR S1Q9A=5;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON18; SET NEW;
+IF S1Q9A=2 OR S1Q9A=6;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON19; SET NEW;
+IF S1Q9A=2 OR S1Q9A=7;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON20; SET NEW;
+IF S1Q9A=2 OR S1Q9A=8;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON21; SET NEW;
+IF S1Q9A=2 OR S1Q9A=9;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON22; SET NEW;
+IF S1Q9A=2 OR S1Q9A=10;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON23; SET NEW;
+IF S1Q9A=2 OR S1Q9A=11;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON24; SET NEW;
+IF S1Q9A=2 OR S1Q9A=12;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON25; SET NEW;
+IF S1Q9A=2 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON26; SET NEW;
+IF S1Q9A=2 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON27; SET NEW;
+IF S1Q9A=2 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON28; SET NEW;
+IF S1Q9A=3 OR S1Q9A=4;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON29; SET NEW;
+IF S1Q9A=3 OR S1Q9A=5;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON30; SET NEW;
+IF S1Q9A=3 OR S1Q9A=6;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON31; SET NEW;
+IF S1Q9A=3 OR S1Q9A=7;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON32; SET NEW;
+IF S1Q9A=3 OR S1Q9A=8;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISO33; SET NEW;
+IF S1Q9A=3 OR S1Q9A=9;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON34; SET NEW;
+IF S1Q9A=3 OR S1Q9A=10;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON35; SET NEW;
+IF S1Q9A=3 OR S1Q9A=11;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON36; SET NEW;
+IF S1Q9A=3 OR S1Q9A=12;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON37; SET NEW;
+IF S1Q9A=3 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON38; SET NEW;
+IF S1Q9A=3 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON39; SET NEW;
+IF S1Q9A=3 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON40; SET NEW;
+IF S1Q9A=4 OR S1Q9A=5;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON41; SET NEW;
+IF S1Q9A=4 OR S1Q9A=6;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON42; SET NEW;
+IF S1Q9A=4 OR S1Q9A=7;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON43; SET NEW;
+IF S1Q9A=4 OR S1Q9A=8;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON44; SET NEW;
+IF S1Q9A=4 OR S1Q9A=9;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON45; SET NEW;
+IF S1Q9A=4 OR S1Q9A=10;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON46; SET NEW;
+IF S1Q9A=4 OR S1Q9A=11;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON47; SET NEW;
+IF S1Q9A=4 OR S1Q9A=12;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON48; SET NEW;
+IF S1Q9A=4 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON49; SET NEW;
+IF S1Q9A=4 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON50; SET NEW;
+IF S1Q9A=4 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON51; SET NEW;
+IF S1Q9A=5 OR S1Q9A=6;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON52; SET NEW;
+IF S1Q9A=5 OR S1Q9A=7;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON53; SET NEW;
+IF S1Q9A=5 OR S1Q9A=8;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON54; SET NEW;
+IF S1Q9A=5 OR S1Q9A=9;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON55; SET NEW;
+IF S1Q9A=5 OR S1Q9A=10;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON56; SET NEW;
+IF S1Q9A=5 OR S1Q9A=11;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON57; SET NEW;
+IF S1Q9A=5 OR S1Q9A=12;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON58; SET NEW;
+IF S1Q9A=5 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON59; SET NEW;
+IF S1Q9A=5 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON60; SET NEW;
+IF S1Q9A=5 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON61; SET NEW;
+IF S1Q9A=6 OR S1Q9A=7;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON62; SET NEW;
+IF S1Q9A=6 OR S1Q9A=8;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON63; SET NEW;
+IF S1Q9A=6 OR S1Q9A=9;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON64; SET NEW;
+IF S1Q9A=6 OR S1Q9A=10;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON65; SET NEW;
+IF S1Q9A=6 OR S1Q9A=11;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON66; SET NEW;
+IF S1Q9A=6 OR S1Q9A=12;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON67; SET NEW;
+IF S1Q9A=6 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON68; SET NEW;
+IF S1Q9A=6 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON69; SET NEW;
+IF S1Q9A=6 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON70; SET NEW;
+IF S1Q9A=7 OR S1Q9A=8;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON71; SET NEW;
+IF S1Q9A=7 OR S1Q9A=9;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON72; SET NEW;
+IF S1Q9A=7 OR S1Q9A=10;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON73; SET NEW;
+IF S1Q9A=7 OR S1Q9A=11;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON74; SET NEW;
+IF S1Q9A=7 OR S1Q9A=12;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON75; SET NEW;
+IF S1Q9A=7 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON76; SET NEW;
+IF S1Q9A=7 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON77; SET NEW;
+IF S1Q9A=7 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;RUN;
+
+DATA COMPARISON78; SET NEW;
+IF S1Q9A=8 OR S1Q9A=9;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON79; SET NEW;
+IF S1Q9A=8 OR S1Q9A=10;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON80; SET NEW;
+IF S1Q9A=8 OR S1Q9A=11;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON81; SET NEW;
+IF S1Q9A=8 OR S1Q9A=12;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON82; SET NEW;
+IF S1Q9A=8 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON83; SET NEW;
+IF S1Q9A=8 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON84; SET NEW;
+IF S1Q9A=8 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON85; SET NEW;
+IF S1Q9A=9 OR S1Q9A=10;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON86; SET NEW;
+IF S1Q9A=9 OR S1Q9A=11;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON87; SET NEW;
+IF S1Q9A=9 OR S1Q9A=12;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON88; SET NEW;
+IF S1Q9A=9 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON89; SET NEW;
+IF S1Q9A=9 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON90; SET NEW;
+IF S1Q9A=9 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON91; SET NEW;
+IF S1Q9A=10 OR S1Q9A=11;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON92; SET NEW;
+IF S1Q9A=10 OR S1Q9A=12;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON93; SET NEW;
+IF S1Q9A=10 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON94; SET NEW;
+IF S1Q9A=10 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON95; SET NEW;
+IF S1Q9A=10 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON96; SET NEW;
+IF S1Q9A=11 OR S1Q9A=12;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON97; SET NEW;
+IF S1Q9A=11 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON98; SET NEW;
+IF S1Q9A=11 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON99; SET NEW;
+IF S1Q9A=11 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON100; SET NEW;
+IF S1Q9A=12 OR S1Q9A=13;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON101; SET NEW;
+IF S1Q9A=12 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON102; SET NEW;
+IF S1Q9A=12 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON103; SET NEW;
+IF S1Q9A=13 OR S1Q9A=14;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON104; SET NEW;
+IF S1Q9A=13 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+DATA COMPARISON105; SET NEW;
+IF S1Q9A=14 OR S1Q9A=15;
+PROC SORT; BY majordeplife;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY majordeplife;
+RUN;
+
+/*****************SECOND ANALYSIS*****************************/
+data new1; set mydata.nesarc_pds;
+keep IDNUM S1Q9A S3CD3Q13B AGE opioidabuselife S1Q10A incomelvl;/*add incomelvl as moderator*/
+
+/*create did not work for pay industry category*/
+if S1Q9A = . then S1Q9A = 15;
+
+/*define opioid abusers based on those with at least 1 opioid abuse event*/
+if S3CD3Q13B NE . then opioidabuselife = 1;
+if S3CD3Q13B = . then opioidabuselife = 0;
+
+/*split income into two groups at 2002 median household income*/
+if S1Q10A LE 42409 then incomelvl = 0;
+if S1Q10A GT 42409 then incomelvl = 42409;
+
+/*change industry numbers to characters*/
+S1Q9A = STRIP(PUT(S1Q9A, 8.));
+
+/*subset the data to only adults*/
+if AGE GE 18;
+run;
+
+/*sort by moderator*/
+proc sort; by incomelvl;
+
+/*run frequency tables on opioid episodes and industry*/
+proc freq; tables S1Q9A opioidabuselife incomelvl;
+run;
+
+/*run Chi Square test with moderator*/
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+by incomelvl;
+RUN;
+
+/*post hoc analysis*/
+DATA COMPARISON1; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=2;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON2; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=3;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON3; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=4;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON4; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=5;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON5; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=6;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON6; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=7;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON7; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=8;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON8; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=9;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON9; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=10;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON10; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=11;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON11; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=12;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON12; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON13; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON14; SET NEW1;
+IF S1Q9A=1 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON15; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=3;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON16; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=4;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON17; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=5;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON18; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=6;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON19; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=7;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON20; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=8;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON21; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=9;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON22; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=10;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON23; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=11;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON24; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=12;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON25; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON26; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON27; SET NEW1;
+IF S1Q9A=2 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON28; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=4;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON29; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=5;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON30; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=6;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON31; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=7;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON32; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=8;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISO33; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=9;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON34; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=10;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON35; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=11;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON36; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=12;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON37; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON38; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON39; SET NEW1;
+IF S1Q9A=3 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON40; SET NEW1;
+IF S1Q9A=4 OR S1Q9A=5;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON41; SET NEW1;
+IF S1Q9A=4 OR S1Q9A=6;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON42; SET NEW1;
+IF S1Q9A=4 OR S1Q9A=7;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON43; SET NEW1;
+IF S1Q9A=4 OR S1Q9A=8;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON44; SET NEW1;
+IF S1Q9A=4 OR S1Q9A=9;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON45; SET NEW1;
+IF S1Q9A=4 OR S1Q9A=10;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON46; SET NEW1;
+IF S1Q9A=4 OR S1Q9A=11;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON47; SET NEW1;
+IF S1Q9A=4 OR S1Q9A=12;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON48; SET NEW1;
+IF S1Q9A=4 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON49; SET NEW1;
+IF S1Q9A=4 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON50; SET NEW1;
+IF S1Q9A=4 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON51; SET NEW1;
+IF S1Q9A=5 OR S1Q9A=6;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON52; SET NEW1;
+IF S1Q9A=5 OR S1Q9A=7;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON53; SET NEW1;
+IF S1Q9A=5 OR S1Q9A=8;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON54; SET NEW1;
+IF S1Q9A=5 OR S1Q9A=9;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON55; SET NEW1;
+IF S1Q9A=5 OR S1Q9A=10;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON56; SET NEW1;
+IF S1Q9A=5 OR S1Q9A=11;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON57; SET NEW1;
+IF S1Q9A=5 OR S1Q9A=12;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON58; SET NEW1;
+IF S1Q9A=5 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON59; SET NEW1;
+IF S1Q9A=5 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON60; SET NEW1;
+IF S1Q9A=5 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON61; SET NEW1;
+IF S1Q9A=6 OR S1Q9A=7;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON62; SET NEW1;
+IF S1Q9A=6 OR S1Q9A=8;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON63; SET NEW1;
+IF S1Q9A=6 OR S1Q9A=9;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON64; SET NEW1;
+IF S1Q9A=6 OR S1Q9A=10;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON65; SET NEW1;
+IF S1Q9A=6 OR S1Q9A=11;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON66; SET NEW1;
+IF S1Q9A=6 OR S1Q9A=12;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON67; SET NEW1;
+IF S1Q9A=6 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON68; SET NEW1;
+IF S1Q9A=6 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON69; SET NEW1;
+IF S1Q9A=6 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON70; SET NEW1;
+IF S1Q9A=7 OR S1Q9A=8;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON71; SET NEW1;
+IF S1Q9A=7 OR S1Q9A=9;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON72; SET NEW1;
+IF S1Q9A=7 OR S1Q9A=10;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON73; SET NEW1;
+IF S1Q9A=7 OR S1Q9A=11;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON74; SET NEW1;
+IF S1Q9A=7 OR S1Q9A=12;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON75; SET NEW1;
+IF S1Q9A=7 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON76; SET NEW1;
+IF S1Q9A=7 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON77; SET NEW1;
+IF S1Q9A=7 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;RUN;
+
+DATA COMPARISON78; SET NEW1;
+IF S1Q9A=8 OR S1Q9A=9;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON79; SET NEW1;
+IF S1Q9A=8 OR S1Q9A=10;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON80; SET NEW1;
+IF S1Q9A=8 OR S1Q9A=11;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON81; SET NEW1;
+IF S1Q9A=8 OR S1Q9A=12;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON82; SET NEW1;
+IF S1Q9A=8 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON83; SET NEW1;
+IF S1Q9A=8 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON84; SET NEW1;
+IF S1Q9A=8 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON85; SET NEW1;
+IF S1Q9A=9 OR S1Q9A=10;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON86; SET NEW1;
+IF S1Q9A=9 OR S1Q9A=11;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON87; SET NEW1;
+IF S1Q9A=9 OR S1Q9A=12;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON88; SET NEW1;
+IF S1Q9A=9 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON89; SET NEW1;
+IF S1Q9A=9 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON90; SET NEW1;
+IF S1Q9A=9 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON91; SET NEW1;
+IF S1Q9A=10 OR S1Q9A=11;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON92; SET NEW1;
+IF S1Q9A=10 OR S1Q9A=12;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON93; SET NEW1;
+IF S1Q9A=10 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON94; SET NEW1;
+IF S1Q9A=10 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON95; SET NEW1;
+IF S1Q9A=10 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON96; SET NEW1;
+IF S1Q9A=11 OR S1Q9A=12;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON97; SET NEW1;
+IF S1Q9A=11 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON98; SET NEW1;
+IF S1Q9A=11 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON99; SET NEW1;
+IF S1Q9A=11 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON100; SET NEW1;
+IF S1Q9A=12 OR S1Q9A=13;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON101; SET NEW1;
+IF S1Q9A=12 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON102; SET NEW1;
+IF S1Q9A=12 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON103; SET NEW1;
+IF S1Q9A=13 OR S1Q9A=14;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON104; SET NEW1;
+IF S1Q9A=13 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
+
+DATA COMPARISON105; SET NEW1;
+IF S1Q9A=14 OR S1Q9A=15;
+PROC SORT; BY incomelvl;
+PROC FREQ; TABLES opioidabuselife*S1Q9A/CHISQ;
+BY incomelvl;
+RUN;
