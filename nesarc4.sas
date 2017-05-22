@@ -1,7 +1,7 @@
 libname mydata "/courses/d1406ae5ba27fe300 " access=readonly;
 
 data new; set mydata.nesarc_pds;
-keep IDNUM S1Q10A S3CD3Q13B S3CD3Q13CR AGE opioidabuselife;
+/*keep IDNUM S1Q10A S3CD3Q13B S3CD3Q13CR AGE opioidabuselife;*/
 label S3CD3Q13B = "Number of opioid abuse episodes"
 	  S1Q10A = "Income";
 
