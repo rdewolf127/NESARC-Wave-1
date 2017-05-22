@@ -1,6 +1,6 @@
 libname mydata "/courses/d1406ae5ba27fe300 " access=readonly;
 data new; set mydata.nesarc_pds;
-keep AGE agegroup S1Q9A S1Q9B S1Q20 workinterfere S3CD3Q13A opioidage S3CD3Q13B opioidabuse opioidabusetop10 S3CQ12A9 S4AQ7 majordepression S9Q7 genanxiety opioidabuseclean;
+/*keep AGE agegroup S1Q9A S1Q9B S1Q20 workinterfere S3CD3Q13A opioidage S3CD3Q13B opioidabuse opioidabusetop10 S3CQ12A9 S4AQ7 majordepression S9Q7 genanxiety opioidabuseclean;*/
 label AGE = "Age"
       agegroup = "Age"
       S1Q9A="Business or Industry"
